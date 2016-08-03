@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ "$1" == "" ]; then
+  echo "To initialize -- pass the name of this service as an argument"
+  exit 1
+fi
+
+git ls-files | xargs sed -i "s/SERVICE_NAME/$1/g"
