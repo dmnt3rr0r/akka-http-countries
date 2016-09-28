@@ -33,7 +33,7 @@ object Main extends Hello with Goodbye {
   }
 
   def main(ags: Array[String]): Unit = {
-    println("Starting SERVICE_NAME...")
+    println("Starting countries-ms...")
     val bindingFuture = Http().bindAndHandle(route, config.getString("http.interface"), config.getInt("http.port"))
 
     println(s"Server online at http://" + config.getString("http.interface") + ":" + config.getInt("http.port") + "\nPress RETURN to stop...")

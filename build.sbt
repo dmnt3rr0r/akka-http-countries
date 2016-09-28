@@ -1,4 +1,4 @@
-name := "SERVICE_NAME"
+name := "countries-ms"
 organization := "cirruslogicweb"
 version := "1.0"
 scalaVersion := "2.11.8"
