@@ -1,13 +1,12 @@
 name := "countries-ms"
 organization := "cirruslogicweb"
 version := "1.0"
-scalaVersion := "2.11.8"
-
+scalaVersion := "2.12.0-RC1"
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 libraryDependencies ++= {
-  val akkaV         = "2.4.8"
-  val scalaTestV    = "2.2.6"
+  val akkaV         = "2.4.10"
+  val scalaTestV    = "3.0.0"
 
   Seq(
     "com.typesafe.akka" %% "akka-actor" % akkaV,
