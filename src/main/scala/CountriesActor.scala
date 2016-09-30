@@ -4,7 +4,7 @@ import akka.http.scaladsl._
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.{ ContentTypes, HttpRequest, HttpResponse, StatusCodes }
 import akka.http.scaladsl.unmarshalling.Unmarshal
-import akka.stream.scaladsl.Sink
+import akka.stream.scaladsl.{ Sink, Source }
 import akka.stream.{ ActorMaterializer, ActorMaterializerSettings }
 import scala.collection.immutable.List
 import spray.json.{ DefaultJsonProtocol, _ }
@@ -55,7 +55,10 @@ class CountriesActor extends Actor with ActorLogging with JsonSupport {
   override def receive = {
     case LoadCountries => {
       log.error("request to LoadContries")
-      http.singleRequest(HttpRequest(uri = apiAll)).pipeTo(self)
+      Source.single(HttpRequest(uri = apiAll))
+        .via(http.outgoingConnectionHttps("restcountries.eu"))
+        .runWith(Sink.head)
+        .pipeTo(self)
     }
 
     case HttpResponse(StatusCodes.OK, headers, entity, _) =>
